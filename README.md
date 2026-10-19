@@ -4,12 +4,16 @@
 
 AlgoCanvas is an interactive web workspace built for mastering Data Structures & Algorithms (DSA). Instead of reading dry explanations, AlgoCanvas allows you to step through algorithm state changes frame-by-frame and compare a learner trace side-by-side with a canonical reference solution.
 
-[![Validate Question Bank](https://github.com/OWNER/algocanvas/actions/workflows/validate-questions.yml/badge.svg)](https://github.com/OWNER/algocanvas/actions/workflows/validate-questions.yml)
+[![Validate Question Bank](https://github.com/prateek271/algocanvas/actions/workflows/validate-questions.yml/badge.svg)](https://github.com/OWNER/algocanvas/actions/workflows/validate-questions.yml)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
+## Demo
+
+![(AlgoCanvas Demo GIF)](public/algocanvas_demo.gif)
+---
 ## ✨ Features
 
 - 🎬 **Semantic Visual Frame Renderers**: Dynamic visualizations for:

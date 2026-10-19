@@ -1,14 +1,14 @@
 # Copyable question templates
 
-These are documentation templates only. Do **not** save this Markdown file as a question. Create one JSON file per lesson under `questions/`, for example `questions/ds-11.question.json`.
+These are documentation templates only. Do **not** save this Markdown file as a question. Create one JSON file per lesson under `questions/`. The IDs below are placeholders—choose the next unused `DS-XX` ID in the actual bank.
 
 ## Ready template — use only after the adapter and renderer exist
 
 ```json
 {
   "templateVersion": 1,
-  "id": "DS-11",
-  "order": 11,
+  "id": "DS-98",
+  "order": 98,
   "status": "READY",
   "title": "Example ready question",
   "category": "ARRAYS",
@@ -39,8 +39,8 @@ These are documentation templates only. Do **not** save this Markdown file as a 
 ```json
 {
   "templateVersion": 1,
-  "id": "DS-12",
-  "order": 12,
+  "id": "DS-99",
+  "order": 99,
   "status": "PLANNED",
   "title": "Example graph question",
   "category": "GRAPHS",

@@ -15,11 +15,12 @@ This workspace is the updated project source. The downloadable archive includes 
 
 ## Add another question
 
-1. Read [`AI_QUESTION_AUTHORING_GUIDE.md`](AI_QUESTION_AUTHORING_GUIDE.md).
+1. Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`AI_QUESTION_AUTHORING_GUIDE.md`](AI_QUESTION_AUTHORING_GUIDE.md).
 2. Copy [`questions/QUESTION_TEMPLATE.md`](questions/QUESTION_TEMPLATE.md) as a format reference.
-3. Add `questions/ds-XX.question.json`.
+3. Add `questions/ds-XX.question.json` with the next unused ID.
 4. Keep it `PLANNED` until its adapter, normalized trace frames, frontend renderer, and QA are implemented.
-5. Run `npm run questions:check`.
+5. Run `npm test`; the same gate runs in GitHub Actions on relevant pull requests.
+6. Repository owners must require **Question Bank Validation / Question validation** in branch protection to prevent a failing pull request from merging.
 
 ## Run locally
 

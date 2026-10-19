@@ -6,6 +6,7 @@
   "scripts": {
     "questions:compile": "node scripts/compile-questions.js",
     "questions:check": "node scripts/compile-questions.js --strict",
+    "test": "npm run questions:check && node --check server.js && node --check public/app.js && node --check lib/question-registry.js && node scripts/test-template-validation.js && node scripts/test-question-bank.js",
     "start": "node server.js",
     "dev": "node server.js"
   }

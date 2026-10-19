@@ -1,0 +1,37 @@
+name: Propose a question
+description: Suggest a question for the VisuCode bank.
+title: "Question proposal: "
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Problem title
+      placeholder: e.g. Insert Into a Binary Search Tree
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original problem/source URL
+    validations:
+      required: true
+  - type: textarea
+    id: pattern
+    attributes:
+      label: Learning goal / algorithm pattern
+      description: What should the learner understand?
+    validations:
+      required: true
+  - type: textarea
+    id: visual
+    attributes:
+      label: Suggested visualization
+      description: Which data structure and state transitions should be visible?
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Small input and expected result
+    validations:
+      required: true

@@ -12,8 +12,8 @@ Copy an existing ready template and edit it. A ready template needs a registered
 ```json
 {
   "templateVersion": 1,
-  "id": "DS-11",
-  "order": 11,
+  "id": "DS-98",
+  "order": 98,
   "status": "READY",
   "title": "Example lesson",
   "category": "ARRAYS",
@@ -77,7 +77,8 @@ Use blueprints for lessons whose visual adapter is still outstanding—for examp
 
 ```bash
 npm run questions:compile       # development-safe; logs bad modules and continues
-npm run questions:check         # CI mode; exits non-zero if any module is invalid
+npm run questions:check         # strict template/adapter validation
+npm test                        # full contributor gate: validation + runtime smoke tests
 npm start                       # starts the project; server compiles on boot and refreshes on API reads
 ```
 

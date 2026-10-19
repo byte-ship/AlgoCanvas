@@ -19,7 +19,7 @@ Use this file as the operating brief for any AI or developer adding the remainin
 # 1. Copy the documentation example or an adjacent question module.
 # 2. Add the template.
 npm run questions:compile
-npm run questions:check
+npm test
 npm start
 ```
 
@@ -32,8 +32,8 @@ A READY module needs all fields below:
 ```json
 {
   "templateVersion": 1,
-  "id": "DS-11",
-  "order": 11,
+  "id": "DS-98",
+  "order": 98,
   "status": "READY",
   "title": "Question title",
   "category": "ARRAYS",
@@ -66,8 +66,8 @@ PLANNED modules should still be complete curriculum specifications. They are all
 ```json
 {
   "templateVersion": 1,
-  "id": "DS-09",
-  "order": 9,
+  "id": "DS-99",
+  "order": 99,
   "status": "PLANNED",
   "title": "Number of Islands",
   "category": "2D GRID",
@@ -157,10 +157,10 @@ Malformed JSON and duplicate IDs are always diagnostic-only, because their ident
 
 ## Definition of done
 
-Before saying a question is complete, run:
+Before saying a question is complete, run the same gate used by GitHub Actions:
 
 ```bash
-npm run questions:check
+npm test
 ```
 
 Then verify that the compiled question has the expected status through:

@@ -1,0 +1,29 @@
+{
+  "templateVersion": 1,
+  "id": "DS-08",
+  "order": 8,
+  "status": "READY",
+  "title": "BFS / DFS",
+  "category": "GRAPHS",
+  "difficulty": "MEDIUM",
+  "summary": "Compare breadth-first queue traversal with depth-first stack traversal on the same binary tree.",
+  "input": {
+    "kind": "tree-traversal",
+    "default": "{\"tree\":[1,2,3,4,5,null,6],\"strategy\":\"BFS\"}",
+    "hint": "JSON object: { tree: level-order values (null for missing nodes), strategy: \"BFS\" | \"DFS\" }"
+  },
+  "visual": {
+    "adapter": "tree-traversal",
+    "renderer": "binary-tree-frontier",
+    "representation": "Hierarchical binary tree with active/visited nodes and a live queue (BFS) or stack (DFS)."
+  },
+  "code": {
+    "starter": "import java.util.*;\nclass Solution {\n  public List<Integer> traverse(TreeNode root, String strategy) {\n    List<Integer> order = new ArrayList<>();\n    if (root == null) return order;\n    if (\"DFS\".equalsIgnoreCase(strategy)) {\n      Deque<TreeNode> stack = new ArrayDeque<>();\n      stack.push(root);\n      while (!stack.isEmpty()) {\n        TreeNode node = stack.pop();\n        order.add(node.val);\n        if (node.right != null) stack.push(node.right);\n        if (node.left != null) stack.push(node.left);\n      }\n    } else {\n      Queue<TreeNode> queue = new ArrayDeque<>();\n      queue.offer(root);\n      while (!queue.isEmpty()) {\n        TreeNode node = queue.poll();\n        order.add(node.val);\n        if (node.left != null) queue.offer(node.left);\n        if (node.right != null) queue.offer(node.right);\n      }\n    }\n    return order;\n  }\n}",
+    "reference": "import java.util.*;\nclass Solution {\n  public List<Integer> traverse(TreeNode root, String strategy) {\n    List<Integer> order = new ArrayList<>();\n    if (root == null) return order;\n    if (\"DFS\".equalsIgnoreCase(strategy)) {\n      Deque<TreeNode> stack = new ArrayDeque<>();\n      stack.push(root);\n      while (!stack.isEmpty()) {\n        TreeNode node = stack.pop();\n        order.add(node.val);\n        if (node.right != null) stack.push(node.right);\n        if (node.left != null) stack.push(node.left);\n      }\n    } else {\n      Queue<TreeNode> queue = new ArrayDeque<>();\n      queue.offer(root);\n      while (!queue.isEmpty()) {\n        TreeNode node = queue.poll();\n        order.add(node.val);\n        if (node.left != null) queue.offer(node.left);\n        if (node.right != null) queue.offer(node.right);\n      }\n    }\n    return order;\n  }\n}"
+  },
+  "approach": {
+    "explanation": "BFS visits a whole level at a time using a FIFO queue. DFS follows a branch using a LIFO stack (preorder here), pushing right before left so the left child is visited first.",
+    "time": "O(n)",
+    "space": "O(n)"
+  }
+}

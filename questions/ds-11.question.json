@@ -1,0 +1,29 @@
+{
+  "templateVersion": 1,
+  "id": "DS-11",
+  "order": 11,
+  "status": "READY",
+  "title": "Search Insert Position",
+  "category": "ARRAYS",
+  "difficulty": "EASY",
+  "summary": "Find the target index or the insertion position that preserves sorted order.",
+  "input": {
+    "kind": "array-target",
+    "default": "{\"array\":[1,3,5,6],\"target\":5}",
+    "hint": "JSON object: { array: sorted number[], target: number }"
+  },
+  "visual": {
+    "adapter": "search-insert-position",
+    "renderer": "binary-search-insert",
+    "representation": "Sorted array with moving binary-search bounds, midpoint, and final return/insertion index."
+  },
+  "code": {
+    "starter": "class Solution {\n  public int searchInsert(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n      int mid = left + (right - left) / 2;\n      if (nums[mid] == target) {\n        return mid;\n      } else if (nums[mid] < target) {\n        left = mid + 1;\n      } else {\n        right = mid - 1;\n      }\n    }\n    return left;\n  }\n}",
+    "reference": "class Solution {\n  public int searchInsert(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n      int mid = left + (right - left) / 2;\n      if (nums[mid] == target) return mid;\n      else if (nums[mid] < target) left = mid + 1;\n      else right = mid - 1;\n    }\n    return left;\n  }\n}"
+  },
+  "approach": {
+    "explanation": "Perform binary search on the sorted array. If the target is found, return its index. If not found, when the search interval collapses (left > right), the left pointer points to the insertion index that maintains sorted order.",
+    "time": "O(log n)",
+    "space": "O(1)"
+  }
+}

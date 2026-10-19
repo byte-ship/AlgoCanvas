@@ -1,0 +1,30 @@
+{
+  "templateVersion": 1,
+  "id": "DS-09",
+  "order": 9,
+  "status": "PLANNED",
+  "title": "Number of Islands",
+  "category": "2D GRID",
+  "difficulty": "MEDIUM",
+  "summary": "Flood fill connected land cells.",
+  "input": {
+    "kind": "binary-grid",
+    "default": "{\"grid\":[[\"1\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"0\",\"1\"],[\"0\",\"0\",\"1\",\"1\"]]}",
+    "hint": "JSON object: { grid: string[][] }"
+  },
+  "visual": {
+    "family": "GRID_GRAPH",
+    "renderer": "number-of-islands-grid",
+    "representation": "2D land/water grid with visited cells, flood-fill frontier, and island count.",
+    "readiness": "PHASE_3"
+  },
+  "code": {
+    "starter": "class Solution {\n  public int numIslands(char[][] grid) {\n    int count = 0;\n    for (int row = 0; row < grid.length; row++) {\n      for (int col = 0; col < grid[0].length; col++) {\n        if (grid[row][col] == '1') {\n          flood(grid, row, col);\n          count++;\n        }\n      }\n    }\n    return count;\n  }\n  private void flood(char[][] grid, int row, int col) {\n    if (row < 0 || col < 0 || row == grid.length || col == grid[0].length || grid[row][col] != '1') return;\n    grid[row][col] = '0';\n    flood(grid, row + 1, col);\n    flood(grid, row - 1, col);\n    flood(grid, row, col + 1);\n    flood(grid, row, col - 1);\n  }\n}",
+    "reference": "class Solution {\n  public int numIslands(char[][] grid) {\n    int count = 0;\n    for (int row = 0; row < grid.length; row++) {\n      for (int col = 0; col < grid[0].length; col++) {\n        if (grid[row][col] == '1') {\n          flood(grid, row, col);\n          count++;\n        }\n      }\n    }\n    return count;\n  }\n  private void flood(char[][] grid, int row, int col) {\n    if (row < 0 || col < 0 || row == grid.length || col == grid[0].length || grid[row][col] != '1') return;\n    grid[row][col] = '0';\n    flood(grid, row + 1, col);\n    flood(grid, row - 1, col);\n    flood(grid, row, col + 1);\n    flood(grid, row, col - 1);\n  }\n}"
+  },
+  "approach": {
+    "explanation": "Each unvisited land cell starts a flood fill that marks one entire island before the scan continues.",
+    "time": "O(m \u00d7 n)",
+    "space": "O(m \u00d7 n)"
+  }
+}

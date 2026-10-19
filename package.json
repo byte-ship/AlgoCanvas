@@ -1,0 +1,12 @@
+{
+  "name": "visucode",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Trace-first algorithm learning workspace",
+  "scripts": {
+    "questions:compile": "node scripts/compile-questions.js",
+    "questions:check": "node scripts/compile-questions.js --strict",
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}

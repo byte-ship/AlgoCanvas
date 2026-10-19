@@ -1,0 +1,30 @@
+{
+  "templateVersion": 1,
+  "id": "DS-02",
+  "order": 2,
+  "status": "PLANNED",
+  "title": "Two Sum",
+  "category": "HASH TABLES",
+  "difficulty": "EASY",
+  "summary": "Track complements while scanning.",
+  "input": {
+    "kind": "numbers-target",
+    "default": "{\"numbers\":[2,7,11,15],\"target\":9}",
+    "hint": "JSON object: { numbers: number[], target: number }"
+  },
+  "visual": {
+    "family": "ARRAY_HASH_MAP",
+    "renderer": "two-sum-array-map",
+    "representation": "Array scan with a live complement hash-map inspection card.",
+    "readiness": "PHASE_3"
+  },
+  "code": {
+    "starter": "class Solution {\n  public int[] twoSum(int[] numbers, int target) {\n    Map<Integer, Integer> seen = new HashMap<>();\n    for (int i = 0; i < numbers.length; i++) {\n      int complement = target - numbers[i];\n      if (seen.containsKey(complement)) return new int[] { seen.get(complement), i };\n      seen.put(numbers[i], i);\n    }\n    return new int[] {};\n  }\n}",
+    "reference": "class Solution {\n  public int[] twoSum(int[] numbers, int target) {\n    Map<Integer, Integer> seen = new HashMap<>();\n    for (int i = 0; i < numbers.length; i++) {\n      int complement = target - numbers[i];\n      if (seen.containsKey(complement)) return new int[] { seen.get(complement), i };\n      seen.put(numbers[i], i);\n    }\n    return new int[] {};\n  }\n}"
+  },
+  "approach": {
+    "explanation": "Scan once, store each value with its index, and ask whether the current complement has already appeared.",
+    "time": "O(n)",
+    "space": "O(n)"
+  }
+}

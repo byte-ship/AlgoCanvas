@@ -1,0 +1,304 @@
+{
+  "templateVersion": 1,
+  "compiledAt": "2026-10-19T19:14:09.110Z",
+  "sourceDirectory": "questions",
+  "questions": [
+    {
+      "templateVersion": 1,
+      "id": "DS-01",
+      "order": 1,
+      "title": "Bubble Sort",
+      "category": "ARRAYS",
+      "difficulty": "EASY",
+      "status": "READY",
+      "summary": "Compare adjacent values and steadily grow a sorted suffix.",
+      "defaultInput": "[8, 3, 5, 1, 7]",
+      "inputHint": "JSON array of integers",
+      "inputKind": "integer-array",
+      "mode": "ARRAY",
+      "adapter": "bubble-sort",
+      "starterCode": "class Solution {\n  public void bubbleSort(int[] arr) {\n    for (int i = 0; i < arr.length - 1; i++) {\n      for (int j = 0; j < arr.length - i - 1; j++) {\n        if (arr[j] > arr[j + 1]) {\n          int temp = arr[j];\n          arr[j] = arr[j + 1];\n          arr[j + 1] = temp;\n        }\n      }\n    }\n  }\n}",
+      "referenceCode": "class Solution {\n  public void bubbleSort(int[] arr) {\n    for (int i = 0; i < arr.length - 1; i++) {\n      boolean swapped = false;\n      for (int j = 0; j < arr.length - i - 1; j++) {\n        if (arr[j] > arr[j + 1]) {\n          int temp = arr[j];\n          arr[j] = arr[j + 1];\n          arr[j + 1] = temp;\n          swapped = true;\n        }\n      }\n      if (!swapped) break;\n    }\n  }\n}",
+      "approach": {
+        "explanation": "Walk adjacent pairs from left to right. A swap moves the largest remaining value to the end of the unsorted range; stop early when a pass makes no swaps.",
+        "time": "O(n²)",
+        "space": "O(1)"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-02",
+      "order": 2,
+      "title": "Two Sum",
+      "category": "HASH TABLES",
+      "difficulty": "EASY",
+      "status": "PLANNED",
+      "summary": "Track complements while scanning.",
+      "defaultInput": "{\"numbers\":[2,7,11,15],\"target\":9}",
+      "inputHint": "JSON object: { numbers: number[], target: number }",
+      "inputKind": "numbers-target",
+      "mode": "PLANNED",
+      "adapter": null,
+      "starterCode": "class Solution {\n  public int[] twoSum(int[] numbers, int target) {\n    Map<Integer, Integer> seen = new HashMap<>();\n    for (int i = 0; i < numbers.length; i++) {\n      int complement = target - numbers[i];\n      if (seen.containsKey(complement)) return new int[] { seen.get(complement), i };\n      seen.put(numbers[i], i);\n    }\n    return new int[] {};\n  }\n}",
+      "referenceCode": "class Solution {\n  public int[] twoSum(int[] numbers, int target) {\n    Map<Integer, Integer> seen = new HashMap<>();\n    for (int i = 0; i < numbers.length; i++) {\n      int complement = target - numbers[i];\n      if (seen.containsKey(complement)) return new int[] { seen.get(complement), i };\n      seen.put(numbers[i], i);\n    }\n    return new int[] {};\n  }\n}",
+      "approach": {
+        "explanation": "Scan once, store each value with its index, and ask whether the current complement has already appeared.",
+        "time": "O(n)",
+        "space": "O(n)"
+      },
+      "visualBlueprint": {
+        "family": "ARRAY_HASH_MAP",
+        "renderer": "two-sum-array-map",
+        "representation": "Array scan with a live complement hash-map inspection card.",
+        "readiness": "PHASE_3"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-03",
+      "order": 3,
+      "title": "Binary Search",
+      "category": "ARRAYS",
+      "difficulty": "EASY",
+      "status": "READY",
+      "summary": "Halve a sorted search space using left, middle, and right bounds.",
+      "defaultInput": "{\"array\":[1,3,4,7,9,12,16,21],\"target\":12}",
+      "inputHint": "JSON object: { array: number[], target: number }",
+      "inputKind": "array-target",
+      "mode": "BINARY_SEARCH",
+      "adapter": "binary-search",
+      "starterCode": "class Solution {\n  public int search(int[] arr, int target) {\n    int left = 0, right = arr.length - 1;\n    while (left <= right) {\n      int mid = left + (right - left) / 2;\n      if (arr[mid] == target) return mid;\n      if (arr[mid] < target) {\n        left = mid + 1;\n      } else {\n        right = mid - 1;\n      }\n    }\n    return -1;\n  }\n}",
+      "referenceCode": "class Solution {\n  public int search(int[] arr, int target) {\n    int left = 0, right = arr.length - 1;\n    while (left <= right) {\n      int mid = left + (right - left) / 2;\n      if (arr[mid] == target) return mid;\n      if (arr[mid] < target) left = mid + 1;\n      else right = mid - 1;\n    }\n    return -1;\n  }\n}",
+      "approach": {
+        "explanation": "Because the data is ordered, compare the middle value and discard half of the candidates on every iteration.",
+        "time": "O(log n)",
+        "space": "O(1)"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-04",
+      "order": 4,
+      "title": "Valid Palindrome",
+      "category": "STRINGS",
+      "difficulty": "EASY",
+      "status": "READY",
+      "summary": "Move two pointers inward while skipping punctuation and case.",
+      "defaultInput": "{\"text\":\"A man, a plan, a canal: Panama\"}",
+      "inputHint": "JSON object: { text: string }",
+      "inputKind": "text-object",
+      "mode": "TWO_POINTER_STRING",
+      "adapter": "valid-palindrome",
+      "starterCode": "class Solution {\n  public boolean isPalindrome(String s) {\n    int left = 0, right = s.length() - 1;\n    while (left < right) {\n      while (left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;\n      while (left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;\n      if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {\n        return false;\n      }\n      left++;\n      right--;\n    }\n    return true;\n  }\n}",
+      "referenceCode": "class Solution {\n  public boolean isPalindrome(String s) {\n    int left = 0, right = s.length() - 1;\n    while (left < right) {\n      while (left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;\n      while (left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;\n      if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) return false;\n      left++;\n      right--;\n    }\n    return true;\n  }\n}",
+      "approach": {
+        "explanation": "Ignore punctuation and case, then compare the outside pair. A mismatch settles the answer; a match allows both pointers to move inward.",
+        "time": "O(n)",
+        "space": "O(1)"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-05",
+      "order": 5,
+      "title": "Longest Substring",
+      "category": "SLIDING WINDOW",
+      "difficulty": "MEDIUM",
+      "status": "READY",
+      "summary": "Expand a unique-character window and move its left edge on duplicates.",
+      "defaultInput": "{\"text\":\"pwwkew\"}",
+      "inputHint": "JSON object: { text: string }",
+      "inputKind": "text-object",
+      "mode": "SLIDING_WINDOW_STRING",
+      "adapter": "longest-substring",
+      "starterCode": "class Solution {\n  public int lengthOfLongestSubstring(String s) {\n    Map<Character, Integer> lastSeen = new HashMap<>();\n    int left = 0, best = 0;\n    for (int right = 0; right < s.length(); right++) {\n      char ch = s.charAt(right);\n      if (lastSeen.containsKey(ch)) {\n        left = Math.max(left, lastSeen.get(ch) + 1);\n      }\n      lastSeen.put(ch, right);\n      best = Math.max(best, right - left + 1);\n    }\n    return best;\n  }\n}",
+      "referenceCode": "class Solution {\n  public int lengthOfLongestSubstring(String s) {\n    Map<Character, Integer> lastSeen = new HashMap<>();\n    int left = 0, best = 0;\n    for (int right = 0; right < s.length(); right++) {\n      char ch = s.charAt(right);\n      if (lastSeen.containsKey(ch)) left = Math.max(left, lastSeen.get(ch) + 1);\n      lastSeen.put(ch, right);\n      best = Math.max(best, right - left + 1);\n    }\n    return best;\n  }\n}",
+      "approach": {
+        "explanation": "Record the last index of each character. When a duplicate lands in the active window, advance left past its earlier position without moving right backward.",
+        "time": "O(n)",
+        "space": "O(min(n, alphabet))"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-06",
+      "order": 6,
+      "title": "Reverse Linked List",
+      "category": "LINKED LISTS",
+      "difficulty": "EASY",
+      "status": "READY",
+      "summary": "Flip one next pointer per iteration without losing the remaining chain.",
+      "defaultInput": "[1, 2, 3, 4]",
+      "inputHint": "JSON array of integer node values",
+      "inputKind": "integer-array",
+      "mode": "LINKED_LIST",
+      "adapter": "reverse-linked-list",
+      "starterCode": "class Solution {\n  public ListNode reverseList(ListNode head) {\n    ListNode prev = null;\n    ListNode curr = head;\n    while (curr != null) {\n      ListNode nextTemp = curr.next;\n      curr.next = prev;\n      prev = curr;\n      curr = nextTemp;\n    }\n    return prev;\n  }\n}",
+      "referenceCode": "class Solution {\n  public ListNode reverseList(ListNode head) {\n    ListNode prev = null;\n    ListNode curr = head;\n    while (curr != null) {\n      ListNode nextTemp = curr.next;\n      curr.next = prev;\n      prev = curr;\n      curr = nextTemp;\n    }\n    return prev;\n  }\n}",
+      "approach": {
+        "explanation": "Keep the unprocessed chain safe in nextTemp, then redirect curr.next toward prev before advancing both pointers.",
+        "time": "O(n)",
+        "space": "O(1)"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-07",
+      "order": 7,
+      "title": "Inorder Traversal",
+      "category": "TREES",
+      "difficulty": "EASY",
+      "status": "PLANNED",
+      "summary": "Visit left, node, right with call stack context.",
+      "defaultInput": "{\"tree\":[4,2,6,1,3,5,7]}",
+      "inputHint": "JSON object: { tree: level-order number[] }",
+      "inputKind": "level-order-tree",
+      "mode": "PLANNED",
+      "adapter": null,
+      "starterCode": "class Solution {\n  public List<Integer> inorderTraversal(TreeNode root) {\n    List<Integer> order = new ArrayList<>();\n    traverse(root, order);\n    return order;\n  }\n  private void traverse(TreeNode node, List<Integer> order) {\n    if (node == null) return;\n    traverse(node.left, order);\n    order.add(node.val);\n    traverse(node.right, order);\n  }\n}",
+      "referenceCode": "class Solution {\n  public List<Integer> inorderTraversal(TreeNode root) {\n    List<Integer> order = new ArrayList<>();\n    traverse(root, order);\n    return order;\n  }\n  private void traverse(TreeNode node, List<Integer> order) {\n    if (node == null) return;\n    traverse(node.left, order);\n    order.add(node.val);\n    traverse(node.right, order);\n  }\n}",
+      "approach": {
+        "explanation": "An inorder traversal visits every left subtree, then its node, then the right subtree.",
+        "time": "O(n)",
+        "space": "O(h)"
+      },
+      "visualBlueprint": {
+        "family": "TREE",
+        "renderer": "inorder-tree",
+        "representation": "Hierarchical binary tree with active node, traversal order, and call-stack panel.",
+        "readiness": "PHASE_3"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-08",
+      "order": 8,
+      "title": "BFS / DFS",
+      "category": "GRAPHS",
+      "difficulty": "MEDIUM",
+      "status": "READY",
+      "summary": "Compare breadth-first queue traversal with depth-first stack traversal on the same binary tree.",
+      "defaultInput": "{\"tree\":[1,2,3,4,5,null,6],\"strategy\":\"BFS\"}",
+      "inputHint": "JSON object: { tree: level-order values (null for missing nodes), strategy: \"BFS\" | \"DFS\" }",
+      "inputKind": "tree-traversal",
+      "mode": "TREE_TRAVERSAL",
+      "adapter": "tree-traversal",
+      "starterCode": "import java.util.*;\nclass Solution {\n  public List<Integer> traverse(TreeNode root, String strategy) {\n    List<Integer> order = new ArrayList<>();\n    if (root == null) return order;\n    if (\"DFS\".equalsIgnoreCase(strategy)) {\n      Deque<TreeNode> stack = new ArrayDeque<>();\n      stack.push(root);\n      while (!stack.isEmpty()) {\n        TreeNode node = stack.pop();\n        order.add(node.val);\n        if (node.right != null) stack.push(node.right);\n        if (node.left != null) stack.push(node.left);\n      }\n    } else {\n      Queue<TreeNode> queue = new ArrayDeque<>();\n      queue.offer(root);\n      while (!queue.isEmpty()) {\n        TreeNode node = queue.poll();\n        order.add(node.val);\n        if (node.left != null) queue.offer(node.left);\n        if (node.right != null) queue.offer(node.right);\n      }\n    }\n    return order;\n  }\n}",
+      "referenceCode": "import java.util.*;\nclass Solution {\n  public List<Integer> traverse(TreeNode root, String strategy) {\n    List<Integer> order = new ArrayList<>();\n    if (root == null) return order;\n    if (\"DFS\".equalsIgnoreCase(strategy)) {\n      Deque<TreeNode> stack = new ArrayDeque<>();\n      stack.push(root);\n      while (!stack.isEmpty()) {\n        TreeNode node = stack.pop();\n        order.add(node.val);\n        if (node.right != null) stack.push(node.right);\n        if (node.left != null) stack.push(node.left);\n      }\n    } else {\n      Queue<TreeNode> queue = new ArrayDeque<>();\n      queue.offer(root);\n      while (!queue.isEmpty()) {\n        TreeNode node = queue.poll();\n        order.add(node.val);\n        if (node.left != null) queue.offer(node.left);\n        if (node.right != null) queue.offer(node.right);\n      }\n    }\n    return order;\n  }\n}",
+      "approach": {
+        "explanation": "BFS visits a whole level at a time using a FIFO queue. DFS follows a branch using a LIFO stack (preorder here), pushing right before left so the left child is visited first.",
+        "time": "O(n)",
+        "space": "O(n)"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-09",
+      "order": 9,
+      "title": "Number of Islands",
+      "category": "2D GRID",
+      "difficulty": "MEDIUM",
+      "status": "PLANNED",
+      "summary": "Flood fill connected land cells.",
+      "defaultInput": "{\"grid\":[[\"1\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"0\",\"1\"],[\"0\",\"0\",\"1\",\"1\"]]}",
+      "inputHint": "JSON object: { grid: string[][] }",
+      "inputKind": "binary-grid",
+      "mode": "PLANNED",
+      "adapter": null,
+      "starterCode": "class Solution {\n  public int numIslands(char[][] grid) {\n    int count = 0;\n    for (int row = 0; row < grid.length; row++) {\n      for (int col = 0; col < grid[0].length; col++) {\n        if (grid[row][col] == '1') {\n          flood(grid, row, col);\n          count++;\n        }\n      }\n    }\n    return count;\n  }\n  private void flood(char[][] grid, int row, int col) {\n    if (row < 0 || col < 0 || row == grid.length || col == grid[0].length || grid[row][col] != '1') return;\n    grid[row][col] = '0';\n    flood(grid, row + 1, col);\n    flood(grid, row - 1, col);\n    flood(grid, row, col + 1);\n    flood(grid, row, col - 1);\n  }\n}",
+      "referenceCode": "class Solution {\n  public int numIslands(char[][] grid) {\n    int count = 0;\n    for (int row = 0; row < grid.length; row++) {\n      for (int col = 0; col < grid[0].length; col++) {\n        if (grid[row][col] == '1') {\n          flood(grid, row, col);\n          count++;\n        }\n      }\n    }\n    return count;\n  }\n  private void flood(char[][] grid, int row, int col) {\n    if (row < 0 || col < 0 || row == grid.length || col == grid[0].length || grid[row][col] != '1') return;\n    grid[row][col] = '0';\n    flood(grid, row + 1, col);\n    flood(grid, row - 1, col);\n    flood(grid, row, col + 1);\n    flood(grid, row, col - 1);\n  }\n}",
+      "approach": {
+        "explanation": "Each unvisited land cell starts a flood fill that marks one entire island before the scan continues.",
+        "time": "O(m × n)",
+        "space": "O(m × n)"
+      },
+      "visualBlueprint": {
+        "family": "GRID_GRAPH",
+        "renderer": "number-of-islands-grid",
+        "representation": "2D land/water grid with visited cells, flood-fill frontier, and island count.",
+        "readiness": "PHASE_3"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-10",
+      "order": 10,
+      "title": "Climbing Stairs",
+      "category": "DYNAMIC PROGRAMMING",
+      "difficulty": "EASY",
+      "status": "PLANNED",
+      "summary": "Build a compact recurrence table.",
+      "defaultInput": "{\"n\":5}",
+      "inputHint": "JSON object: { n: positive integer }",
+      "inputKind": "positive-integer",
+      "mode": "PLANNED",
+      "adapter": null,
+      "starterCode": "class Solution {\n  public int climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1, prev1 = 2;\n    for (int step = 3; step <= n; step++) {\n      int current = prev1 + prev2;\n      prev2 = prev1;\n      prev1 = current;\n    }\n    return prev1;\n  }\n}",
+      "referenceCode": "class Solution {\n  public int climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1, prev1 = 2;\n    for (int step = 3; step <= n; step++) {\n      int current = prev1 + prev2;\n      prev2 = prev1;\n      prev1 = current;\n    }\n    return prev1;\n  }\n}",
+      "approach": {
+        "explanation": "The number of ways to reach each step is the sum of the previous two counts, so only two rolling values are needed.",
+        "time": "O(n)",
+        "space": "O(1)"
+      },
+      "visualBlueprint": {
+        "family": "DP_TABLE",
+        "renderer": "climbing-stairs-dp",
+        "representation": "One-dimensional recurrence table plus optional recursion-tree view.",
+        "readiness": "PHASE_3"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-11",
+      "order": 11,
+      "title": "Search Insert Position",
+      "category": "ARRAYS",
+      "difficulty": "EASY",
+      "status": "READY",
+      "summary": "Find the target index or the insertion position that preserves sorted order.",
+      "defaultInput": "{\"array\":[1,3,5,6],\"target\":5}",
+      "inputHint": "JSON object: { array: sorted number[], target: number }",
+      "inputKind": "array-target",
+      "mode": "BINARY_SEARCH",
+      "adapter": "search-insert-position",
+      "starterCode": "class Solution {\n  public int searchInsert(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n      int mid = left + (right - left) / 2;\n      if (nums[mid] == target) {\n        return mid;\n      } else if (nums[mid] < target) {\n        left = mid + 1;\n      } else {\n        right = mid - 1;\n      }\n    }\n    return left;\n  }\n}",
+      "referenceCode": "class Solution {\n  public int searchInsert(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n      int mid = left + (right - left) / 2;\n      if (nums[mid] == target) return mid;\n      else if (nums[mid] < target) left = mid + 1;\n      else right = mid - 1;\n    }\n    return left;\n  }\n}",
+      "approach": {
+        "explanation": "Perform binary search on the sorted array. If the target is found, return its index. If not found, when the search interval collapses (left > right), the left pointer points to the insertion index that maintains sorted order.",
+        "time": "O(log n)",
+        "space": "O(1)"
+      }
+    },
+    {
+      "templateVersion": 1,
+      "id": "DS-12",
+      "order": 12,
+      "title": "Insert Into a Binary Search Tree",
+      "category": "TREES",
+      "difficulty": "MEDIUM",
+      "status": "READY",
+      "summary": "Follow the BST search path, insert element e, and observe the resulting tree height h.",
+      "defaultInput": "{\"tree\":[8,3,10,1,6,null,14],\"e\":5}",
+      "inputHint": "JSON object: { tree: level-order BST, e: integer to insert }",
+      "inputKind": "bst-insert",
+      "mode": "TREE_BST_INSERT",
+      "adapter": "bst-insert",
+      "starterCode": "class Solution {\n  public TreeNode insertIntoBST(TreeNode root, int e) {\n    if (root == null) return new TreeNode(e);\n    TreeNode current = root;\n    while (true) {\n      if (e < current.val) {\n        if (current.left == null) {\n          current.left = new TreeNode(e);\n          break;\n        }\n        current = current.left;\n      } else if (e > current.val) {\n        if (current.right == null) {\n          current.right = new TreeNode(e);\n          break;\n        }\n        current = current.right;\n      } else {\n        return root;\n      }\n    }\n    return root;\n  }\n}",
+      "referenceCode": "class Solution {\n  public TreeNode insertIntoBST(TreeNode root, int e) {\n    if (root == null) return new TreeNode(e);\n    TreeNode current = root;\n    while (true) {\n      if (e < current.val) {\n        if (current.left == null) {\n          current.left = new TreeNode(e);\n          break;\n        }\n        current = current.left;\n      } else if (e > current.val) {\n        if (current.right == null) {\n          current.right = new TreeNode(e);\n          break;\n        }\n        current = current.right;\n      } else {\n        return root;\n      }\n    }\n    return root;\n  }\n}",
+      "approach": {
+        "explanation": "Compare e with each node and follow left for smaller values or right for larger values until an empty child is found. Duplicate values are ignored. Height h is the number of nodes on the longest root-to-leaf path; an empty tree has height 0.",
+        "time": "O(h)",
+        "space": "O(1)"
+      }
+    }
+  ],
+  "unavailableQuestions": [],
+  "diagnostics": [],
+  "summary": {
+    "discovered": 12,
+    "loaded": 12,
+    "skipped": 0,
+    "unavailableVisible": 0,
+    "usingLastKnownGood": false
+  }
+}

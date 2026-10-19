@@ -1,0 +1,27 @@
+{
+  "templateVersion": 1,
+  "id": "DS-04",
+  "order": 4,
+  "status": "READY",
+  "title": "Valid Palindrome",
+  "category": "STRINGS",
+  "difficulty": "EASY",
+  "summary": "Move two pointers inward while skipping punctuation and case.",
+  "input": {
+    "kind": "text-object",
+    "default": "{\"text\":\"A man, a plan, a canal: Panama\"}",
+    "hint": "JSON object: { text: string }"
+  },
+  "visual": {
+    "adapter": "valid-palindrome"
+  },
+  "code": {
+    "starter": "class Solution {\n  public boolean isPalindrome(String s) {\n    int left = 0, right = s.length() - 1;\n    while (left < right) {\n      while (left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;\n      while (left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;\n      if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {\n        return false;\n      }\n      left++;\n      right--;\n    }\n    return true;\n  }\n}",
+    "reference": "class Solution {\n  public boolean isPalindrome(String s) {\n    int left = 0, right = s.length() - 1;\n    while (left < right) {\n      while (left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;\n      while (left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;\n      if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) return false;\n      left++;\n      right--;\n    }\n    return true;\n  }\n}"
+  },
+  "approach": {
+    "explanation": "Ignore punctuation and case, then compare the outside pair. A mismatch settles the answer; a match allows both pointers to move inward.",
+    "time": "O(n)",
+    "space": "O(1)"
+  }
+}

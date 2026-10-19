@@ -1,0 +1,30 @@
+{
+  "templateVersion": 1,
+  "id": "DS-07",
+  "order": 7,
+  "status": "PLANNED",
+  "title": "Inorder Traversal",
+  "category": "TREES",
+  "difficulty": "EASY",
+  "summary": "Visit left, node, right with call stack context.",
+  "input": {
+    "kind": "level-order-tree",
+    "default": "{\"tree\":[4,2,6,1,3,5,7]}",
+    "hint": "JSON object: { tree: level-order number[] }"
+  },
+  "visual": {
+    "family": "TREE",
+    "renderer": "inorder-tree",
+    "representation": "Hierarchical binary tree with active node, traversal order, and call-stack panel.",
+    "readiness": "PHASE_3"
+  },
+  "code": {
+    "starter": "class Solution {\n  public List<Integer> inorderTraversal(TreeNode root) {\n    List<Integer> order = new ArrayList<>();\n    traverse(root, order);\n    return order;\n  }\n  private void traverse(TreeNode node, List<Integer> order) {\n    if (node == null) return;\n    traverse(node.left, order);\n    order.add(node.val);\n    traverse(node.right, order);\n  }\n}",
+    "reference": "class Solution {\n  public List<Integer> inorderTraversal(TreeNode root) {\n    List<Integer> order = new ArrayList<>();\n    traverse(root, order);\n    return order;\n  }\n  private void traverse(TreeNode node, List<Integer> order) {\n    if (node == null) return;\n    traverse(node.left, order);\n    order.add(node.val);\n    traverse(node.right, order);\n  }\n}"
+  },
+  "approach": {
+    "explanation": "An inorder traversal visits every left subtree, then its node, then the right subtree.",
+    "time": "O(n)",
+    "space": "O(h)"
+  }
+}

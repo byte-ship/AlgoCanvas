@@ -1,0 +1,30 @@
+{
+  "templateVersion": 1,
+  "id": "DS-10",
+  "order": 10,
+  "status": "PLANNED",
+  "title": "Climbing Stairs",
+  "category": "DYNAMIC PROGRAMMING",
+  "difficulty": "EASY",
+  "summary": "Build a compact recurrence table.",
+  "input": {
+    "kind": "positive-integer",
+    "default": "{\"n\":5}",
+    "hint": "JSON object: { n: positive integer }"
+  },
+  "visual": {
+    "family": "DP_TABLE",
+    "renderer": "climbing-stairs-dp",
+    "representation": "One-dimensional recurrence table plus optional recursion-tree view.",
+    "readiness": "PHASE_3"
+  },
+  "code": {
+    "starter": "class Solution {\n  public int climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1, prev1 = 2;\n    for (int step = 3; step <= n; step++) {\n      int current = prev1 + prev2;\n      prev2 = prev1;\n      prev1 = current;\n    }\n    return prev1;\n  }\n}",
+    "reference": "class Solution {\n  public int climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1, prev1 = 2;\n    for (int step = 3; step <= n; step++) {\n      int current = prev1 + prev2;\n      prev2 = prev1;\n      prev1 = current;\n    }\n    return prev1;\n  }\n}"
+  },
+  "approach": {
+    "explanation": "The number of ways to reach each step is the sum of the previous two counts, so only two rolling values are needed.",
+    "time": "O(n)",
+    "space": "O(1)"
+  }
+}

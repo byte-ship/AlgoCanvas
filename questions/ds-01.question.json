@@ -1,0 +1,27 @@
+{
+  "templateVersion": 1,
+  "id": "DS-01",
+  "order": 1,
+  "status": "READY",
+  "title": "Bubble Sort",
+  "category": "ARRAYS",
+  "difficulty": "EASY",
+  "summary": "Compare adjacent values and steadily grow a sorted suffix.",
+  "input": {
+    "kind": "integer-array",
+    "default": "[8, 3, 5, 1, 7]",
+    "hint": "JSON array of integers"
+  },
+  "visual": {
+    "adapter": "bubble-sort"
+  },
+  "code": {
+    "starter": "class Solution {\n  public void bubbleSort(int[] arr) {\n    for (int i = 0; i < arr.length - 1; i++) {\n      for (int j = 0; j < arr.length - i - 1; j++) {\n        if (arr[j] > arr[j + 1]) {\n          int temp = arr[j];\n          arr[j] = arr[j + 1];\n          arr[j + 1] = temp;\n        }\n      }\n    }\n  }\n}",
+    "reference": "class Solution {\n  public void bubbleSort(int[] arr) {\n    for (int i = 0; i < arr.length - 1; i++) {\n      boolean swapped = false;\n      for (int j = 0; j < arr.length - i - 1; j++) {\n        if (arr[j] > arr[j + 1]) {\n          int temp = arr[j];\n          arr[j] = arr[j + 1];\n          arr[j + 1] = temp;\n          swapped = true;\n        }\n      }\n      if (!swapped) break;\n    }\n  }\n}"
+  },
+  "approach": {
+    "explanation": "Walk adjacent pairs from left to right. A swap moves the largest remaining value to the end of the unsorted range; stop early when a pass makes no swaps.",
+    "time": "O(n²)",
+    "space": "O(1)"
+  }
+}

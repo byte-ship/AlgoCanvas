@@ -1,0 +1,27 @@
+{
+  "templateVersion": 1,
+  "id": "DS-05",
+  "order": 5,
+  "status": "READY",
+  "title": "Longest Substring",
+  "category": "SLIDING WINDOW",
+  "difficulty": "MEDIUM",
+  "summary": "Expand a unique-character window and move its left edge on duplicates.",
+  "input": {
+    "kind": "text-object",
+    "default": "{\"text\":\"pwwkew\"}",
+    "hint": "JSON object: { text: string }"
+  },
+  "visual": {
+    "adapter": "longest-substring"
+  },
+  "code": {
+    "starter": "class Solution {\n  public int lengthOfLongestSubstring(String s) {\n    Map<Character, Integer> lastSeen = new HashMap<>();\n    int left = 0, best = 0;\n    for (int right = 0; right < s.length(); right++) {\n      char ch = s.charAt(right);\n      if (lastSeen.containsKey(ch)) {\n        left = Math.max(left, lastSeen.get(ch) + 1);\n      }\n      lastSeen.put(ch, right);\n      best = Math.max(best, right - left + 1);\n    }\n    return best;\n  }\n}",
+    "reference": "class Solution {\n  public int lengthOfLongestSubstring(String s) {\n    Map<Character, Integer> lastSeen = new HashMap<>();\n    int left = 0, best = 0;\n    for (int right = 0; right < s.length(); right++) {\n      char ch = s.charAt(right);\n      if (lastSeen.containsKey(ch)) left = Math.max(left, lastSeen.get(ch) + 1);\n      lastSeen.put(ch, right);\n      best = Math.max(best, right - left + 1);\n    }\n    return best;\n  }\n}"
+  },
+  "approach": {
+    "explanation": "Record the last index of each character. When a duplicate lands in the active window, advance left past its earlier position without moving right backward.",
+    "time": "O(n)",
+    "space": "O(min(n, alphabet))"
+  }
+}

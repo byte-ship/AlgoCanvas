@@ -1,99 +1,94 @@
-# VisuCode
+# AlgoCanvas 🎨
 
-A browser workspace for learning algorithms by stepping through a learner trace beside a canonical reference trace.
+> **Visual-first algorithm learning workspace with synchronized dual-trace execution.**
 
-## What is running now
+AlgoCanvas is an interactive web workspace built for mastering Data Structures & Algorithms (DSA). Instead of reading dry explanations, AlgoCanvas allows you to step through algorithm state changes frame-by-frame and compare a learner trace side-by-side with a canonical reference solution.
 
-This repository contains a functional visual-first algorithm-learning workspace:
+[![Validate Question Bank](https://github.com/OWNER/algocanvas/actions/workflows/validate-questions.yml/badge.svg)](https://github.com/OWNER/algocanvas/actions/workflows/validate-questions.yml)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- a polished SPA with editable learner Java, a separate optimal-code drawer, input editor, playback controls, metric cards, and trace comparison;
-- deterministic trace generation for **Bubble Sort**, **Binary Search**, **Valid Palindrome**, **Longest Substring**, **Reverse Linked List**, **BFS / DFS**, **Search Insert Position**, and **BST insertion**;
-- a developer-authored question-module system: every lesson is defined in `questions/*.question.json`, then compiled into the runtime registry used by both the API and UI;
-- a small Node HTTP gateway with `GET /api/problems`, `GET /api/question-diagnostics`, and `POST /api/execute`; and
-- renderers driven by a normalized frame contract, rather than hard-coded screen animations.
+---
 
-The gateway is intentionally a **guided-trace development adapter**, not an arbitrary Java executor. It recognizes the selected template adapter and produces safe deterministic traces from its input. This makes the UX, question-template contract, trace schema, playback, and diff contracts testable before any untrusted-code infrastructure exists.
+## ✨ Features
 
-## Question module compiler
+- 🎬 **Semantic Visual Frame Renderers**: Dynamic visualizations for:
+  - **Arrays & Sorting**: Tile and bar representations with active, sorted, and swap highlights.
+  - **Binary Search**: Bounds ($L/R$), midpoint lane ($M$), probe inspections, and insertion targets.
+  - **Two Pointers & Sliding Window**: String pointer lanes, active windows, and character frequencies.
+  - **Linked Lists**: Node-link diagrams with live pointer reroutes.
+- ⚡ **Side-by-Side Dual-Trace Comparison**: Step through learner code and optimal reference solutions simultaneously to see the exact moment an invariant diverges.
+- 🧩 **Modular Question Bank**: Every problem lives in an isolated `questions/ds-XX.question.json` file.
+- 🤖 **AI-Ready Contribution Pipeline**: Easily add new questions using LLMs (ChatGPT, Claude, Gemini) and validate with automated GitHub Actions CI.
+- 🛡️ **Fail-Safe Compiler**: Malformed templates won't crash the server. Valid questions always compile cleanly.
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- npm (v9 or higher)
+
+### Installation & Run
 
 ```bash
-npm run questions:compile  # compile templates and report diagnostics
-npm run questions:check    # strict schema/adapter validation
-npm test                   # strict validation + runtime smoke tests for every READY question
-npm start                  # compiles on boot; API/UI refresh the registry while running
+# 1. Clone the repository
+git clone https://github.com/YOUR-USERNAME/algocanvas.git
+cd algocanvas
+
+# 2. Run the application
+node server.js
 ```
 
-A malformed module is isolated: valid templates are still emitted and served. Parseable failures appear as disabled curriculum entries by default (or can be hidden with `"onCompileError": "SKIP"`); malformed JSON remains diagnostic-only. The running curriculum refreshes automatically when templates are added or changed. If all source templates fail and a prior registry exists, the last-known-good registry stays active. See [`questions/README.md`](questions/README.md) for the template format, [`questions/QUESTION_TEMPLATE.md`](questions/QUESTION_TEMPLATE.md) for copyable JSON, and [`AI_QUESTION_AUTHORING_GUIDE.md`](AI_QUESTION_AUTHORING_GUIDE.md) for the agent/developer handoff.
+Open your browser and navigate to **`http://localhost:4173`**.
 
-## Contributing questions
+---
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`AI_QUESTION_AUTHORING_GUIDE.md`](AI_QUESTION_AUTHORING_GUIDE.md), and [`questions/QUESTION_TEMPLATE.md`](questions/QUESTION_TEMPLATE.md) for the question-bank workflow. Pull requests that change question modules or their runtime run the **Question Bank Validation** GitHub Actions workflow; it strictly validates templates and smoke-tests every READY adapter against its default input. Repository owners should require **Question Bank Validation / Question validation** in default-branch protection to block merges when validation fails.
+## 🧪 Question Compiler & Validation
 
-## Run locally
+AlgoCanvas compiles individual question templates into an optimized runtime registry (`generated/questions.compiled.json`):
 
 ```bash
-cd visucode
+# Compile question templates
+npm run questions:compile
+
+# Strict schema validation (used by CI)
+npm run questions:check
+
+# Run test suite
 npm test
-npm start
-# open http://localhost:4173
 ```
 
-## API contract
+---
 
-### `POST /api/execute`
+## 🤝 Contributing to the Question Bank
 
-```json
-{
-  "problemId": "DS-01",
-  "userCode": "public void bubbleSort(int[] arr) { ... }",
-  "input": "[8, 3, 5, 1, 7]"
-}
-```
+We want AlgoCanvas to have the most comprehensive, visually explorable DSA curriculum on the web!
 
-Response shape (abridged):
+Contributing a new question takes less than 2 minutes using AI:
 
-```json
-{
-  "executionStatus": "SUCCESS",
-  "engineMode": "GUIDED_TRACE_ADAPTER",
-  "userTrace": {
-    "totalSteps": 18,
-    "metrics": { "totalOperations": 18, "space": "O(1)" },
-    "frames": [{ "step": 0, "kind": "ARRAY", "variables": {}, "structureState": {} }]
-  },
-  "optimalTrace": { "totalSteps": 18, "metrics": {}, "frames": [] },
-  "diff": { "firstDivergence": null, "summary": "…" }
-}
-```
+1. **Pick the next ID** (e.g. `questions/ds-12.question.json`).
+2. **Copy the AI Prompt** from [`CONTRIBUTING.md`](CONTRIBUTING.md) and paste it into ChatGPT, Claude, or Gemini alongside any LeetCode problem.
+3. **Save the generated JSON** to `questions/ds-XX.question.json`.
+4. **Validate locally**:
+   ```bash
+   npm run questions:check
+   ```
+5. **Open a Pull Request** — our CI will automatically check the schema!
 
-### Normalized frame contract
+For full technical specifications and adapter contracts, read [`AI_QUESTION_AUTHORING_GUIDE.md`](AI_QUESTION_AUTHORING_GUIDE.md) and [`questions/QUESTION_TEMPLATE.md`](questions/QUESTION_TEMPLATE.md).
 
-Every frame has:
+---
 
-| Field | Meaning |
-|---|---|
-| `step` | Zero-based frame index |
-| `lineHighlighted` | Source line that produced the state, when known |
-| `action` / `actionDescription` | Compact machine / learner-readable event label |
-| `variables` | Serializable algorithm variables and indices |
-| `structureState` | Renderer-specific structure snapshot, with a `type` field |
-| `changed` | Named values that changed in this transition |
+## 🏛️ Architecture Overview
 
-Frame payloads are capped at **1,000 frames** in the current adapter. The production worker must retain an independent hard cap.
+- **Frontend**: Vanilla JavaScript and modern CSS tokens (`public/`). Zero heavy UI framework dependencies for maximum performance and instant responsiveness.
+- **Backend / Gateway**: Lightweight Node.js server (`server.js`) providing deterministic guided traces, schema-validated problem endpoints, and live curriculum reloads.
+- **Compiler Pipeline**: `lib/question-registry.js` parses, isolates, and normalizes each question template into a runtime registry.
 
-## Production execution boundary (required before public code execution)
+---
 
-The Node API process must never compile or execute user Java. The eventual runner should:
+## 📄 License
 
-1. parse and instrument source in a dedicated build worker (e.g. JavaParser);
-2. execute per-request containers/VMs as an unprivileged UID with a read-only root filesystem;
-3. deny all network egress, use an allowlist-only syscall profile, impose cgroup memory / CPU / PID caps, and apply both CPU and wall-clock timeouts;
-4. cap trace frames, stdout/stderr, input size, compiled artifact size, and result JSON size;
-5. move trace artifacts through a strict schema validator before returning them from the worker; and
-6. log opaque request IDs and operational metrics, never raw learner source by default.
-
-The Docker daemon is not available in this development workspace, so that security-critical layer has deliberately been left as an explicit workstream rather than simulated as “secure execution.”
-
-## Roadmap handoff
-
-See [`AGENT_WORKSTREAMS.md`](AGENT_WORKSTREAMS.md) for granular directives, owners, acceptance checks, and dependencies.
+This project is open source and available under the [MIT License](LICENSE).

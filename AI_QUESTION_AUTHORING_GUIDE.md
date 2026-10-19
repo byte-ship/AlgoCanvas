@@ -1,4 +1,4 @@
-# VisuCode — AI question-authoring guide
+# AlgoCanvas — AI question-authoring guide
 
 Use this file as the operating brief for any AI or developer adding the remaining lessons. The goal is to add one independently valid question module without breaking compilation, the learner UI, or existing adapters.
 
@@ -92,7 +92,7 @@ PLANNED modules should still be complete curriculum specifications. They are all
 ## Current executable adapter contracts
 
 | Adapter | Required `input.kind` | Frame structure | Renderer |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `bubble-sort` | `integer-array` | `ARRAY` | Array tiles / bars |
 | `binary-search` | `array-target` | `BINARY_SEARCH` | Bounds + midpoint lane |
 | `search-insert-position` | `array-target` | `BINARY_SEARCH` | Bounds + midpoint + final insertion/return index |
@@ -130,7 +130,7 @@ A new question is not truly READY until all of these exist:
 ## Representation planning matrix
 
 | Curriculum lesson | Required representation | Key states |
-|---|---|---|
+| --- | --- | --- |
 | Two Sum | Array + hash-map inspection card | index, current value, complement, map entries, match |
 | Inorder Traversal | Hierarchical binary tree + call stack | current node, return point, traversal order |
 | BFS / DFS | Tree/graph + queue/stack frontier | active node, visited set, frontier contents, traversal order |

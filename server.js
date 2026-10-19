@@ -1,5 +1,5 @@
 /*
- * VisuCode local development gateway.
+ * AlgoCanvas local development gateway.
  *
  * Safety note: this process deliberately DOES NOT compile or execute user Java.
  * It exposes deterministic guided traces to exercise the full client trace contract.
@@ -424,5 +424,5 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Question registry: ${questionRegistry.summary.loaded}/${questionRegistry.summary.discovered} modules loaded${questionRegistry.summary.usingLastKnownGood ? ' (last-known-good retained)' : ''}.`);
   for (const item of questionRegistry.diagnostics.filter((entry) => entry.level === 'error')) console.warn(`Question module skipped [${item.code}] ${item.file}: ${item.message}`);
-  console.log(`VisuCode running at http://0.0.0.0:${PORT}`);
+  console.log(`AlgoCanvas running at http://0.0.0.0:${PORT}`);
 });

@@ -1,4 +1,4 @@
-# VisuCode source handoff
+# AlgoCanvas source handoff
 
 This workspace is the updated project source. The downloadable archive includes the frontend, guided-trace server, question templates, compiled registry, and AI authoring docs.
 

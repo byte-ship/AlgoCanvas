@@ -1,5 +1,5 @@
 name: Propose a question
-description: Suggest a question for the VisuCode bank.
+description: Suggest a question for the AlgoCanvas bank.
 title: "Question proposal: "
 body:
   - type: input

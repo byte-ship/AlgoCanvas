@@ -1,4 +1,4 @@
-# Contributing questions to VisuCode
+# Contributing questions to AlgoCanvas
 
 Thanks for helping grow the question bank. Questions are added as small, independently validated JSON modules. A pull request is the submission; the required **Question Bank Validation** check must pass before the change is eligible to merge.
 
@@ -42,7 +42,7 @@ You may give an AI assistant these files as its authoring brief:
 
 Suggested prompt:
 
-> Read the VisuCode AI question-authoring guide, question README, and question template first. Add exactly one question module for [problem]. Choose the next unused DS ID. Check whether its visual adapter is already registered. Use READY only if that adapter, trace adapter, and renderer exist; otherwise use PLANNED and provide a complete visual blueprint. Do not edit generated output. Run `npm test`, inspect diagnostics, and report the new file, status, adapter, and test result. Do not claim Java source is executed by the development trace gateway.
+> Read the AlgoCanvas AI question-authoring guide, question README, and question template first. Add exactly one question module for [problem]. Choose the next unused DS ID. Check whether its visual adapter is already registered. Use READY only if that adapter, trace adapter, and renderer exist; otherwise use PLANNED and provide a complete visual blueprint. Do not edit generated output. Run `npm test`, inspect diagnostics, and report the new file, status, adapter, and test result. Do not claim Java source is executed by the development trace gateway.
 
 Review the AI-generated source and explanation yourself before opening the PR.
 

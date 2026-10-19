@@ -1,9 +1,9 @@
-# VisuCode — delegated workstreams
+# AlgoCanvas — delegated workstreams
 
 > These are small, independently shippable directives for the build. Status is kept here so handoffs remain explicit.
 
 | Agent | Status | Small directive | Deliverable / acceptance check |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **A1 · Product contract** | ✅ Complete | Turn the specification into a thin vertical-slice scope, named boundaries, and non-negotiable safety rules. Do **not** invent a production sandbox. | `README.md` defines MVP, API contract, trace limits, and sandbox boundary. |
 | **A2 · Domain & trace model** | ✅ Complete | Define one normalized frame model that every renderer can consume. Implement deterministic trace generators for Array Sort, Binary Search, Reverse Linked List, two-pointer strings, and sliding windows. | `server.js` responds to `POST /api/execute` with user and reference traces. |
 | **A3 · Execution gateway** | ✅ Complete (scaffold) | Create the HTTP boundary that accepts a problem, Java source, and JSON input. Validate payload size / input shape and return structured compile/runtime-style errors. Use deterministic guided traces until isolated Java workers exist. | `POST /api/execute`, `GET /api/problems`, static asset serving. |

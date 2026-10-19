@@ -6,7 +6,7 @@ const path = require('path');
 const { compileQuestionTemplates } = require('../lib/question-registry');
 
 const root = path.resolve(__dirname, '..');
-const sourceDir = fs.mkdtempSync(path.join(os.tmpdir(), 'visucode-template-test-'));
+const sourceDir = fs.mkdtempSync(path.join(os.tmpdir(), 'AlgoCanvas-template-test-'));
 const questionsDir = path.join(sourceDir, 'questions');
 const outFile = path.join(sourceDir, 'generated', 'questions.compiled.json');
 fs.mkdirSync(questionsDir, { recursive: true });

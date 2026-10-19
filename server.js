@@ -394,7 +394,7 @@ function serveStatic(req, res) {
   });
 }
 
-const server = http.createServer((req, res) => {
+function handleRequest(req, res) {
   if (req.method === 'GET' && req.url.split('?')[0] === '/api/problems') {
     refreshQuestionRegistry();
     return sendJson(res, 200, { problems, registry: { summary: questionRegistry.summary, diagnostics: questionRegistry.diagnostics } });
@@ -419,10 +419,18 @@ const server = http.createServer((req, res) => {
   }
   if (req.method !== 'GET' && req.method !== 'HEAD') return sendJson(res, 405, { error: 'Method not allowed' });
   serveStatic(req, res);
-});
+}
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Question registry: ${questionRegistry.summary.loaded}/${questionRegistry.summary.discovered} modules loaded${questionRegistry.summary.usingLastKnownGood ? ' (last-known-good retained)' : ''}.`);
-  for (const item of questionRegistry.diagnostics.filter((entry) => entry.level === 'error')) console.warn(`Question module skipped [${item.code}] ${item.file}: ${item.message}`);
-  console.log(`AlgoCanvas running at http://localhost:${PORT}`);
-});
+const server = http.createServer(handleRequest);
+
+// Export for serverless environments (Vercel, AWS Lambda)
+module.exports = handleRequest;
+
+// Run standalone server when invoked directly via CLI
+if (require.main === module || !process.env.VERCEL) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Question registry: ${questionRegistry.summary.loaded}/${questionRegistry.summary.discovered} modules loaded${questionRegistry.summary.usingLastKnownGood ? ' (last-known-good retained)' : ''}.`);
+    for (const item of questionRegistry.diagnostics.filter((entry) => entry.level === 'error')) console.warn(`Question module skipped [${item.code}] ${item.file}: ${item.message}`);
+    console.log(`AlgoCanvas running at http://localhost:${PORT}`);
+  });
+}

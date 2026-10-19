@@ -27,6 +27,7 @@ AlgoCanvas is an interactive web workspace built for mastering Data Structures &
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (v18 or higher)
 - npm (v9 or higher)
 
@@ -72,9 +73,11 @@ Contributing a new question takes less than 2 minutes using AI:
 2. **Copy the AI Prompt** from [`CONTRIBUTING.md`](CONTRIBUTING.md) and paste it into ChatGPT, Claude, or Gemini alongside any LeetCode problem.
 3. **Save the generated JSON** to `questions/ds-XX.question.json`.
 4. **Validate locally**:
+
    ```bash
    npm run questions:check
    ```
+
 5. **Open a Pull Request** — our CI will automatically check the schema!
 
 For full technical specifications and adapter contracts, read [`AI_QUESTION_AUTHORING_GUIDE.md`](AI_QUESTION_AUTHORING_GUIDE.md) and [`questions/QUESTION_TEMPLATE.md`](questions/QUESTION_TEMPLATE.md).

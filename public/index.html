@@ -1,98 +1,206 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f6f8fc" />
-    <title>AlgoCanvas — Algorithm Workspace</title>
-    <link rel="stylesheet" href="/styles.css?v=fit-view-slow-speed-1" />
-  </head>
-  <body>
-    <div class="app-shell">
-      <aside id="left-sidebar" class="left-sidebar" aria-label="Problem library">
-        <div class="sidebar-top">
-          <a class="brand" href="#" aria-label="AlgoCanvas home"><span class="brand-mark">⌘</span><span class="brand-word">algo<span>canvas</span></span></a>
-          <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Collapse navigation" title="Collapse navigation">‹</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f8fc" />
+  <title>AlgoCanvas — Algorithm Workspace</title>
+  <link rel="stylesheet" href="/styles.css?v=fit-view-slow-speed-1" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside id="left-sidebar" class="left-sidebar" aria-label="Problem library">
+      <div class="sidebar-top">
+        <a class="brand" href="#" aria-label="AlgoCanvas home"><span class="brand-mark">⌘</span><span
+            class="brand-word">algo<span>canvas</span></span></a>
+        <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Collapse navigation"
+          title="Collapse navigation">‹</button>
+      </div>
+      <nav class="primary-nav"><button class="nav-item active" type="button"><span>▦</span><b>Problem
+            library</b></button><button class="nav-item muted" type="button"
+          title="Progress tracking is coming soon"><span>◒</span><b>My progress</b></button></nav>
+      <div class="library-heading"><span>CURRICULUM</span><b id="problem-count">10</b></div>
+      <div id="problem-list" class="problem-list" aria-live="polite"></div>
+      <div class="sidebar-footer">
+        <div class="learning-note"><span>✦</span>
+          <p><b>Learn in motion</b><small>See every state change.</small></p>
         </div>
-        <nav class="primary-nav"><button class="nav-item active" type="button"><span>▦</span><b>Problem library</b></button><button class="nav-item muted" type="button" title="Progress tracking is coming soon"><span>◒</span><b>My progress</b></button></nav>
-        <div class="library-heading"><span>CURRICULUM</span><b id="problem-count">10</b></div>
-        <div id="problem-list" class="problem-list" aria-live="polite"></div>
-        <div class="sidebar-footer"><div class="learning-note"><span>✦</span><p><b>Learn in motion</b><small>See every state change.</small></p></div><div class="build-chip"><i></i><span>PHASE 1</span></div></div>
-      </aside>
+        <div class="build-chip"><i></i><span>PHASE 1</span></div>
+      </div>
+    </aside>
 
-      <main id="main-content" class="main-content">
-        <header class="topbar">
-          <div class="crumbs"><span>Algorithm lab</span><i>/</i><strong id="header-title">Bubble Sort</strong><em id="header-id">DS-01</em></div>
-          <div class="top-actions"><button id="shortcuts-button" class="small-icon-button" type="button" title="Keyboard shortcuts">?</button><button id="approach-toggle" class="approach-button" type="button"><span>⌁</span> Optimal approach</button><button id="run-button-top" class="run-button compact" type="button">Run <kbd>⌘↵</kbd></button><div class="avatar">V</div></div>
-        </header>
+    <main id="main-content" class="main-content">
+      <header class="topbar">
+        <div class="crumbs"><span>Algorithm lab</span><i>/</i><strong id="header-title">Bubble Sort</strong><em
+            id="header-id">DS-01</em></div>
+        <div class="top-actions"><button id="shortcuts-button" class="small-icon-button" type="button"
+            title="Keyboard shortcuts">?</button><button id="approach-toggle" class="approach-button"
+            type="button"><span>⌁</span> Optimal approach</button><button id="run-button-top" class="run-button compact"
+            type="button">Run <kbd>⌘↵</kbd></button>
+          <div class="avatar">V</div>
+        </div>
+      </header>
 
-        <section class="lesson-header" aria-labelledby="lesson-title">
-          <div><div class="eyebrow"><i></i> ALGORITHM VISUALIZER</div><h1 id="lesson-title">Bubble Sort</h1><p id="lesson-summary">Compare adjacent values and steadily grow a sorted suffix.</p></div>
-          <div class="lesson-properties"><div><span>Pattern</span><strong id="lesson-pattern">Arrays</strong></div><div><span>Difficulty</span><strong id="lesson-difficulty" class="easy">Easy</strong></div><div><span>Language</span><strong>Java</strong></div></div>
-        </section>
+      <section class="lesson-header" aria-labelledby="lesson-title">
+        <div>
+          <div class="eyebrow"><i></i> ALGORITHM VISUALIZER</div>
+          <h1 id="lesson-title">Bubble Sort</h1>
+          <p id="lesson-summary">Compare adjacent values and steadily grow a sorted suffix.</p>
+        </div>
+        <div class="lesson-properties">
+          <div><span>Pattern</span><strong id="lesson-pattern">Arrays</strong></div>
+          <div><span>Difficulty</span><strong id="lesson-difficulty" class="easy">Easy</strong></div>
+          <div><span>Language</span><strong>Java</strong></div>
+        </div>
+      </section>
 
-        <section class="input-card" aria-label="Test input">
-          <div class="input-copy"><span class="input-label">TEST INPUT</span><strong id="input-prompt">Use a JSON array</strong></div>
-          <div class="input-editor-wrap"><textarea id="input-editor" rows="1" spellcheck="false" aria-label="Test input"></textarea><small id="input-hint">JSON array of integers</small></div>
-          <button id="format-input" class="ghost-button" type="button">Format</button><span id="request-status" class="request-status" aria-live="polite">Ready to trace</span><button id="run-button" class="run-button" type="button"><span>▶</span> Run visualization <kbd>⌘↵</kbd></button>
-        </section>
+      <section class="input-card" aria-label="Test input">
+        <div class="input-copy"><span class="input-label">TEST INPUT</span><strong id="input-prompt">Use a JSON
+            array</strong></div>
+        <div class="input-editor-wrap"><textarea id="input-editor" rows="1" spellcheck="false"
+            aria-label="Test input"></textarea><small id="input-hint">JSON array of integers</small></div>
+        <button id="format-input" class="ghost-button" type="button">Format</button><span id="request-status"
+          class="request-status" aria-live="polite">Ready to trace</span><button id="run-button" class="run-button"
+          type="button"><span>▶</span> Run visualization <kbd>⌘↵</kbd></button>
+      </section>
 
-        <section id="array-toolbelt" class="array-toolbelt hidden" aria-label="Array input helpers">
-          <div class="array-tool-label"><span>ARRAY SETUP</span><strong>Shape the next trace</strong></div>
-          <div class="array-preset-buttons" role="group" aria-label="Array presets"><button data-array-action="shuffle" type="button">↻ Shuffle</button><button data-array-action="sorted" type="button">↑ Best case</button><button data-array-action="reversed" type="button">↓ Worst case</button><button data-array-action="reset" type="button">Reset</button></div>
-          <label class="array-size-control">SIZE <input id="array-size" type="range" min="3" max="14" value="5" /><strong id="array-size-value">5 items</strong></label>
-        </section>
+      <section id="array-toolbelt" class="array-toolbelt hidden" aria-label="Array input helpers">
+        <div class="array-tool-label"><span>ARRAY SETUP</span><strong>Shape the next trace</strong></div>
+        <div class="array-preset-buttons" role="group" aria-label="Array presets"><button data-array-action="shuffle"
+            type="button">↻ Shuffle</button><button data-array-action="sorted" type="button">↑ Best case</button><button
+            data-array-action="reversed" type="button">↓ Worst case</button><button data-array-action="reset"
+            type="button">Reset</button></div>
+        <label class="array-size-control">SIZE <input id="array-size" type="range" min="3" max="14" value="5" /><strong
+            id="array-size-value">5 items</strong></label>
+      </section>
 
-        <section class="visual-section" aria-label="Algorithm visualization">
-          <div class="section-heading"><div><span class="eyebrow"><i></i> LIVE EXECUTION</span><h2 id="visual-heading">Your execution trace</h2></div><div id="focus-toggle" class="segmented-control" role="group" aria-label="Trace focus"><button data-focus="user" class="selected" type="button">Your trace</button><button data-focus="reference" type="button">Reference</button></div></div>
-          <article id="visual-card" class="visual-card">
-            <div class="visual-toolbar">
-              <div class="current-state"><span id="visual-state-label">Ready to visualize</span><strong id="visual-action">Run your code against an input to begin.</strong></div>
-              <div class="visual-stats"><span>STATES <b id="stat-states">—</b></span><span id="secondary-stat">SWAPS <b id="stat-swaps">—</b></span><span>MODE</span><div id="view-tabs" class="visual-tabs"><button data-view="array" class="active" type="button">Array</button><button data-view="bars" type="button">Bars</button></div><button id="visual-fullscreen" class="fullscreen-button" type="button" title="Expand visualization" aria-label="Expand visualization">⛶ <span>Expand</span></button></div>
+      <section class="visual-section" aria-label="Algorithm visualization">
+        <div class="section-heading">
+          <div><span class="eyebrow"><i></i> LIVE EXECUTION</span>
+            <h2 id="visual-heading">Your execution trace</h2>
+          </div>
+          <div id="focus-toggle" class="segmented-control" role="group" aria-label="Trace focus"><button
+              data-focus="user" class="selected" type="button">Your trace</button><button data-focus="reference"
+              type="button">Reference</button></div>
+        </div>
+        <article id="visual-card" class="visual-card">
+          <div class="visual-toolbar">
+            <div class="current-state"><span id="visual-state-label">Ready to visualize</span><strong
+                id="visual-action">Run your code against an input to begin.</strong></div>
+            <div class="visual-stats"><span>STATES <b id="stat-states">—</b></span><span id="secondary-stat">SWAPS <b
+                  id="stat-swaps">—</b></span><span>MODE</span>
+              <div id="view-tabs" class="visual-tabs"><button data-view="array" class="active"
+                  type="button">Array</button><button data-view="bars" type="button">Bars</button></div><button
+                id="visual-fullscreen" class="fullscreen-button" type="button" title="Expand visualization"
+                aria-label="Expand visualization">⛶ <span>Expand</span></button>
             </div>
-            <div id="primary-visual" class="primary-visual"></div>
-            <div id="visual-legend" class="visual-legend"></div>
-            <div class="timeline-row"><input id="timeline" type="range" min="0" max="0" value="0" aria-label="Trace timeline" /><span id="timeline-percent">0%</span></div>
-            <div class="visual-controls">
-              <div class="transport" role="group" aria-label="Trace controls"><button id="go-start" title="First step (Home)" type="button">|◀</button><button id="step-back" title="Previous state (Left arrow)" type="button">‹</button><button id="play-toggle" class="play-button" title="Play / pause (Space)" type="button">▶ <span>Play</span></button><button id="step-forward" title="Next state (Right arrow)" type="button">›</button><button id="go-end" title="Last step (End)" type="button">▶|</button></div>
-              <div id="timeline-caption" class="timeline-caption">The visual output will appear here.</div>
-              <div class="control-side"><label>Speed <select id="speed-select" aria-label="Playback speed"><option value="7000">0.1×</option><option value="2800">0.25×</option><option value="1400">0.5×</option><option value="700" selected>1×</option><option value="350">2×</option><option value="160">4×</option></select></label><span id="timeline-step">Step — / —</span></div>
-            </div>
-          </article>
-        </section>
+          </div>
+          <div id="primary-visual" class="primary-visual"></div>
+          <div id="visual-legend" class="visual-legend"></div>
+          <div class="timeline-row"><input id="timeline" type="range" min="0" max="0" value="0"
+              aria-label="Trace timeline" /><span id="timeline-percent">0%</span></div>
+          <div class="visual-controls">
+            <div class="transport" role="group" aria-label="Trace controls"><button id="go-start"
+                title="First step (Home)" type="button">|◀</button><button id="step-back"
+                title="Previous state (Left arrow)" type="button">‹</button><button id="play-toggle" class="play-button"
+                title="Play / pause (Space)" type="button">▶ <span>Play</span></button><button id="step-forward"
+                title="Next state (Right arrow)" type="button">›</button><button id="go-end" title="Last step (End)"
+                type="button">▶|</button></div>
+            <div id="timeline-caption" class="timeline-caption">The visual output will appear here.</div>
+            <div class="control-side"><label>Speed <select id="speed-select" aria-label="Playback speed">
+                  <option value="7000">0.1×</option>
+                  <option value="2800">0.25×</option>
+                  <option value="1400">0.5×</option>
+                  <option value="700" selected>1×</option>
+                  <option value="350">2×</option>
+                  <option value="160">4×</option>
+                </select></label><span id="timeline-step">Step — / —</span></div>
+          </div>
+        </article>
+      </section>
 
-        <section class="insights-row" aria-label="Trace feedback">
-          <article id="diff-card" class="diff-card neutral"><div id="diff-icon" class="diff-icon">◎</div><div><span>TRACE COMPARISON</span><strong id="diff-title">Run both traces from one workspace</strong><p id="diff-copy">The first semantic difference will be called out here.</p></div><button id="jump-divergence" type="button" disabled>Inspect →</button></article>
-          <article class="tiny-metric"><span>OPERATION RATIO</span><strong id="metric-ratio">—</strong><small id="metric-ratio-copy">Learner / reference</small></article>
-          <article class="tiny-metric"><span>SPACE SIGNAL</span><strong id="metric-space">—</strong><small id="metric-space-copy">Awaiting trace</small></article>
-        </section>
+      <section class="insights-row" aria-label="Trace feedback">
+        <article id="diff-card" class="diff-card neutral">
+          <div id="diff-icon" class="diff-icon">◎</div>
+          <div><span>TRACE COMPARISON</span><strong id="diff-title">Run both traces from one workspace</strong>
+            <p id="diff-copy">The first semantic difference will be called out here.</p>
+          </div><button id="jump-divergence" type="button" disabled>Inspect →</button>
+        </article>
+        <article class="tiny-metric"><span>OPERATION RATIO</span><strong id="metric-ratio">—</strong><small
+            id="metric-ratio-copy">Learner / reference</small></article>
+        <article class="tiny-metric"><span>SPACE SIGNAL</span><strong id="metric-space">—</strong><small
+            id="metric-space-copy">Awaiting trace</small></article>
+      </section>
 
-        <section class="code-section" aria-labelledby="code-section-title">
-          <div class="section-heading code-heading"><div><span class="eyebrow"><i></i> LEARNER CODE</span><h2 id="code-section-title">Your solution</h2></div><div class="code-heading-actions"><span id="code-context-note" class="code-context-note">Editable Java source</span></div></div>
-          <article id="code-card" class="code-card">
-            <div class="code-toolbar"><span id="code-dot" class="code-dot">J</span><span id="code-file-name">Solution.java</span><span id="code-read-mode" class="code-read-mode">EDIT MODE</span><span id="code-line-status" class="code-line-status">Trace a run to follow a line.</span></div>
-            <div class="code-body"><pre id="code-gutter" aria-hidden="true"></pre><textarea id="shared-code" class="shared-code" spellcheck="false" aria-label="Java solution"></textarea></div>
-          </article>
-        </section>
-      </main>
+      <section class="code-section" aria-labelledby="code-section-title">
+        <div class="section-heading code-heading">
+          <div><span class="eyebrow"><i></i> LEARNER CODE</span>
+            <h2 id="code-section-title">Your solution</h2>
+          </div>
+          <div class="code-heading-actions"><span id="code-context-note" class="code-context-note">Editable Java
+              source</span></div>
+        </div>
+        <article id="code-card" class="code-card">
+          <div class="code-toolbar"><span id="code-dot" class="code-dot">J</span><span
+              id="code-file-name">Solution.java</span><span id="code-read-mode" class="code-read-mode">EDIT
+              MODE</span><span id="code-line-status" class="code-line-status">Trace a run to follow a line.</span></div>
+          <div class="code-body">
+            <pre id="code-gutter" aria-hidden="true"></pre><textarea id="shared-code" class="shared-code"
+              spellcheck="false" aria-label="Java solution"></textarea>
+          </div>
+        </article>
+      </section>
+    </main>
 
-      <aside id="approach-drawer" class="approach-drawer" aria-label="Optimal approach" aria-hidden="true">
-        <div class="drawer-header"><div><span class="eyebrow"><i></i> REFERENCE PLAN</span><h2>Optimal approach</h2></div><button id="drawer-close" class="drawer-close" type="button" aria-label="Close optimal approach">×</button></div>
-        <div class="drawer-problem"><span id="drawer-problem-id">DS-01</span><strong id="drawer-title">Bubble Sort</strong><p id="drawer-summary">An annotated canonical implementation.</p></div>
-        <div class="approach-block"><span>WHY THIS WORKS</span><p id="approach-explanation">Each pass moves the largest unsorted value to the end. The remaining prefix stays available for the next pass.</p></div>
-        <div class="complexity-grid"><div><span>TIME</span><strong id="approach-time">O(n²)</strong></div><div><span>SPACE</span><strong id="approach-space">O(1)</strong></div></div>
-        <div class="drawer-divider"></div>
-        <section class="drawer-code-section" aria-label="Optimal Java code">
-          <div class="drawer-code-heading"><span><i>J</i> Optimal.java</span><b>READ ONLY</b></div>
-          <pre id="drawer-reference-code" class="drawer-reference-code"></pre>
-        </section>
-        <p class="drawer-compare-note">Your editable solution remains visible in the main code panel for side-by-side comparison.</p>
-        <div class="drawer-actions"><button id="replace-with-optimal" class="replace-code-button" type="button">Replace with optimal version <span>↙</span></button><button id="return-to-code" class="drawer-return" type="button">Keep my code</button></div>
-      </aside>
+    <aside id="approach-drawer" class="approach-drawer" aria-label="Optimal approach" aria-hidden="true">
+      <div class="drawer-header">
+        <div><span class="eyebrow"><i></i> REFERENCE PLAN</span>
+          <h2>Optimal approach</h2>
+        </div><button id="drawer-close" class="drawer-close" type="button"
+          aria-label="Close optimal approach">×</button>
+      </div>
+      <div class="drawer-problem"><span id="drawer-problem-id">DS-01</span><strong id="drawer-title">Bubble
+          Sort</strong>
+        <p id="drawer-summary">An annotated canonical implementation.</p>
+      </div>
+      <div class="approach-block"><span>WHY THIS WORKS</span>
+        <p id="approach-explanation">Each pass moves the largest unsorted value to the end. The remaining prefix stays
+          available for the next pass.</p>
+      </div>
+      <div class="complexity-grid">
+        <div><span>TIME</span><strong id="approach-time">O(n²)</strong></div>
+        <div><span>SPACE</span><strong id="approach-space">O(1)</strong></div>
+      </div>
+      <div class="drawer-divider"></div>
+      <section class="drawer-code-section" aria-label="Optimal Java code">
+        <div class="drawer-code-heading"><span><i>J</i> Optimal.java</span><b>READ ONLY</b></div>
+        <pre id="drawer-reference-code" class="drawer-reference-code"></pre>
+      </section>
+      <p class="drawer-compare-note">Your editable solution remains visible in the main code panel for side-by-side
+        comparison.</p>
+      <div class="drawer-actions"><button id="replace-with-optimal" class="replace-code-button" type="button">Replace
+          with optimal version <span>↙</span></button><button id="return-to-code" class="drawer-return"
+          type="button">Keep my code</button></div>
+    </aside>
+  </div>
+
+  <div id="shortcuts-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true"
+    aria-labelledby="shortcuts-title">
+    <div class="modal"><button id="modal-close" class="modal-close" aria-label="Close shortcuts">×</button><span
+        class="eyebrow"><i></i> WORKSPACE</span>
+      <h2 id="shortcuts-title">Keyboard shortcuts</h2>
+      <div class="shortcuts-list">
+        <div><kbd>⌘</kbd><kbd>↵</kbd><span>Run visualization</span></div>
+        <div><kbd>Space</kbd><span>Play / pause</span></div>
+        <div><kbd>←</kbd><kbd>→</kbd><span>Move between states</span></div>
+        <div><kbd>Home</kbd><kbd>End</kbd><span>First / last state</span></div>
+      </div>
     </div>
+  </div>
+  <div id="toast" class="toast hidden" aria-live="polite"></div>
+  <script src="/app.js?v=fit-view-slow-speed-1"></script>
+</body>
 
-    <div id="shortcuts-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title"><div class="modal"><button id="modal-close" class="modal-close" aria-label="Close shortcuts">×</button><span class="eyebrow"><i></i> WORKSPACE</span><h2 id="shortcuts-title">Keyboard shortcuts</h2><div class="shortcuts-list"><div><kbd>⌘</kbd><kbd>↵</kbd><span>Run visualization</span></div><div><kbd>Space</kbd><span>Play / pause</span></div><div><kbd>←</kbd><kbd>→</kbd><span>Move between states</span></div><div><kbd>Home</kbd><kbd>End</kbd><span>First / last state</span></div></div></div></div>
-    <div id="toast" class="toast hidden" aria-live="polite"></div>
-    <script src="/app.js?v=fit-view-slow-speed-1"></script>
-  </body>
 </html>

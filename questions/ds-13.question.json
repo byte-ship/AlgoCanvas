@@ -1,3 +1,30 @@
 {
-  title: "question 13"
+  "templateVersion": 1,
+  "id": "DS-14",
+  "order": 14,
+  "status": "PLANNED",
+  "title": "Valid Parentheses",
+  "category": "STACK",
+  "difficulty": "EASY",
+  "summary": "Match every bracket with its partner of the same type, in the correct order.",
+  "input": {
+    "kind": "text-object",
+    "default": "{\"s\":\"([)]\"}",
+    "hint": "A JSON object with a single string field \"s\" containing only ()[]"
+  },
+  "visual": {
+    "family": "STACK_MATCHING",
+    "renderer": "valid-parentheses-stack",
+    "representation": "Input characters left-to-right with a growing/shrinking stack column; PUSH, MATCH (pop), MISMATCH and CLOSE_EMPTY frames, plus leftover stack at end.",
+    "readiness": "PHASE_3"
+  },
+  "code": {
+    "starter": "class Solution {\n    public boolean isValid(String s) {\n        // Use a stack: push openers; for each closer, pop and compare.\n        // Return false on mismatch or when popping an empty stack,\n        // and return stack.isEmpty() at the end.\n        return true; // TODO\n    }\n}",
+    "reference": "class Solution {\n    public boolean isValid(String s) {\n        java.util.Deque<Character> stack = new java.util.ArrayDeque<>();\n        for (int i = 0; i < s.length(); i++) {\n            char c = s.charAt(i);\n            if (c == '(' || c == '[' || c == '{') {\n                stack.push(c);\n            } else {\n                if (stack.isEmpty()) return false;\n                if (stack.pop() != pair(c)) return false;\n            }\n        }\n        return stack.isEmpty();\n    }\n\n    private char pair(char close) {\n        if (close == ')') return '(';\n        if (close == ']') return '[';\n        return '{';\n    }\n}"
+  },
+  "approach": {
+    "explanation": "Brackets must close in last-opened-first-closed order, which is exactly LIFO, so a stack models the currently open brackets. Push each opener. On a closer, the top of the stack must be its matching opener: if the stack is empty there is no opener left to close, and if the top differs the closer arrived out of order — both are invalid. After scanning everything, the string is valid only when the stack is empty, since any remaining opener was never closed.",
+    "time": "O(n)",
+    "space": "O(n)"
+  }
 }
